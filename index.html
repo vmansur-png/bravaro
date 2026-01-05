@@ -390,14 +390,14 @@ function finalizarPedido() {
   let total = 0;
 
   carrinho.forEach((item, i) => {
-    mensagem += ${i + 1}. 🍔 ${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}\n;
+    mensagem += `${i + 1}. 🍔 ${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}\n`;
     if (item.obs.trim() !== "") {
       mensagem += `   📝 Obs: ${item.obs}\n`;
     }
     total += item.preco;
   });
 
-  mensagem += \n💰 Total: R$ ${total.toFixed(2).replace(".", ",")};
+  mensagem += `\n💰 Total: R$ ${total.toFixed(2).replace(".", ",")}`;
 
   const url = "https://wa.me/" + telefone + "?text=" + encodeURIComponent(mensagem);
   window.open(url, "_blank");
@@ -406,6 +406,7 @@ function finalizarPedido() {
 
 </body>
 </html>
+
 
 
 
