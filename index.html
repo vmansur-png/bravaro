@@ -9,19 +9,6 @@
 * {
   box-sizing: border-box;
 }
-
-    const obs = document.getElementById(obsId).value;
-
-    let mensagem = Olá! Gostaria de pedir:\n\n🍔 ${nome}\n💰 R$ ${preco};
-
-    if (obs.trim() !== "") {
-      mensagem += \n📝 Observações: ${obs};
-    }
-
-    const telefone = "5514997991098"; // 🔴 TROQUE PELO SEU NÚMERO
-    const url = https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)};
-
-    window.open(url, "_blank");
   }
     
 body {
@@ -387,9 +374,7 @@ function atualizarCarrinho() {
 
   carrinho.forEach((item) => {
     total += item.preco;
-    lista.innerHTML += `
-      <li>${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}</li>
-    `;
+    lista.innerHTML += <li>${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}</li>;
   });
 
   totalEl.innerHTML = <strong>Total: R$ ${total.toFixed(2).replace(".", ",")}</strong>;
@@ -421,6 +406,7 @@ function finalizarPedido() {
 
 </body>
 </html>
+
 
 
 
