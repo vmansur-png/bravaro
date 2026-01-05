@@ -1,4 +1,4 @@
-.<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -354,7 +354,7 @@ const telefone = "5514997991098";
 let carrinho = [];
 
 function adicionarCarrinho(nome, preco, obsId) {
-  const obs = document.getElementById(obsId).value;
+  const obs = document.getElementById(obsId).value || "";
 
   carrinho.push({
     nome,
@@ -369,15 +369,17 @@ function atualizarCarrinho() {
   const lista = document.getElementById("lista-carrinho");
   const totalEl = document.getElementById("total-carrinho");
 
+  if (!lista || !totalEl) return
+  
   lista.innerHTML = "";
   let total = 0;
 
   carrinho.forEach((item) => {
     total += item.preco;
-    lista.innerHTML += <li>${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}</li>;
+    lista.innerHTML += `<li>${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}</li>`;
   });
 
-  totalEl.innerHTML = <strong>Total: R$ ${total.toFixed(2).replace(".", ",")}</strong>;
+  totalEl.innerHTML = `<strong>Total: R$ ${total.toFixed(2).replace(".", ",")}</strong>`;
 }
 
 function finalizarPedido() {
@@ -399,13 +401,13 @@ function finalizarPedido() {
 
   mensagem += `\n💰 Total: R$ ${total.toFixed(2).replace(".", ",")}`;
 
-  const url = "https://wa.me/" + telefone + "?text=" + encodeURIComponent(mensagem);
   window.open(url, "_blank");
 }
 </script>
 
 </body>
 </html>
+
 
 
 
