@@ -182,6 +182,40 @@ footer {
   width: 90%;         
   margin-bottom: 20px;
 }
+  #carrinho {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #1a1713;
+  color: #fff;
+  padding: 18px;
+  border-radius: 14px;
+  width: 280px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  z-index: 999;
+}
+
+#carrinho h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #c9a24d;
+}
+
+#lista-carrinho {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 10px 0;
+  font-size: 14px;
+}
+
+#lista-carrinho li {
+  margin-bottom: 6px;
+}
+
+#total-carrinho {
+  margin: 10px 0;
+}
+  
 </style>
 </head>
 <body>
@@ -210,11 +244,11 @@ footer {
     <textarea id="obs1" placeholder="Observações (ex: sem cebola)"></textarea>
 
     <button
-      onclick="pedirWhats('Tradicional do Chef', '34,90', 'obs1')"
-      class="btn-whatsapp"
-    >
-      Pedir no WhatsApp
-    </button>
+  onclick="adicionarCarrinho('Tradicional do Chef', '34,90', 'obs1')"
+  class="btn-whatsapp"
+>
+  Adicionar ao carrinho
+   </button>
   </div>
 </div>
 
@@ -233,11 +267,11 @@ footer {
     <textarea id="obs2" placeholder="Observações"></textarea>
 
     <button
-      onclick="pedirWhats('Bravaro Gorgonzola', '39,90', 'obs2')"
-      class="btn-whatsapp"
-    >
-      Pedir no WhatsApp
-    </button>
+  onclick="adicionarCarrinho('Bravaro Gorgonzola', '39,90', 'obs2')"
+  class="btn-whatsapp"
+>
+  Adicionar ao carrinho
+   </button>
   </div>
 </div>
 
@@ -256,11 +290,11 @@ footer {
     <textarea id="obs3" placeholder="Observações"></textarea>
 
     <button
-      onclick="pedirWhats('Metadinha', '32,90', 'obs3')"
-      class="btn-whatsapp"
-    >
-      Pedir no WhatsApp
-    </button>
+  onclick="adicionarCarrinho('Metadinha', '32,90', 'obs3')"
+  class="btn-whatsapp"
+>
+  Adicionar ao carrinho
+   </button>
   </div>
 </div>
 
@@ -279,11 +313,11 @@ footer {
     <textarea id="obs4" placeholder="Observações"></textarea>
 
     <button
-      onclick="pedirWhats('Bravaro Clássico', '33,90', 'obs4')"
-      class="btn-whatsapp"
-    >
-      Pedir no WhatsApp
-    </button>
+  onclick="adicionarCarrinho('Bravaro Clássico', '33,90', 'obs4')"
+  class="btn-whatsapp"
+>
+  Adicionar ao carrinho
+   </button>
   </div>
 </div>
 
@@ -302,11 +336,11 @@ footer {
     <textarea id="obs5" placeholder="Observações"></textarea>
 
     <button
-      onclick="pedirWhats('Bravaro Barbecue', '36,90', 'obs5')"
-      class="btn-whatsapp"
-    >
-      Pedir no WhatsApp
-    </button>
+  onclick="adicionarCarrinho('Bravaro Barbecue', '36,90', 'obs5')"
+  class="btn-whatsapp"
+>
+  Adicionar ao carrinho
+   </button>
   </div>
 </div>
 
@@ -323,20 +357,67 @@ Pedidos via WhatsApp • Delivery
 ©️ Bravaro Burgers
 </footer>
 
+  <div id="carrinho">
+  <h3>🛒 Seu pedido</h3>
+  <ul id="lista-carrinho"></ul>
+  <p id="total-carrinho"><strong>Total: R$ 0,00</strong></p>
+
+  <button onclick="finalizarPedido()" class="btn-whatsapp">
+    Finalizar pedido no WhatsApp
+  </button>
+</div>
+  
 <script>
-function pedirWhats(nome, preco, obsId) {
-  const obsEl = document.getElementById(obsId);
-  const obs = obsEl ? obsEl.value : "";
+const telefone = "5514997991098";
+let carrinho = [];
 
-  const telefone = "5514997991098";
+function adicionarCarrinho(nome, preco, obsId) {
+  const obs = document.getElementById(obsId).value;
 
-  let mensagem = "Olá! Gostaria de pedir:\n\n";
-  mensagem += "🍔 " + nome + "\n";
-  mensagem += "💰 R$ " + preco;
+  carrinho.push({
+    nome,
+    preco: parseFloat(preco.replace(",", ".")),
+    obs
+  });
 
-  if (obs.trim() !== "") {
-    mensagem += "\n📝 Observações: " + obs;
+  atualizarCarrinho();
+}
+
+function atualizarCarrinho() {
+  const lista = document.getElementById("lista-carrinho");
+  const totalEl = document.getElementById("total-carrinho");
+
+  lista.innerHTML = "";
+  let total = 0;
+
+  carrinho.forEach((item) => {
+    total += item.preco;
+    lista.innerHTML += `
+      <li>${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}</li>
+    `;
+  });
+
+  totalEl.innerHTML = <strong>Total: R$ ${total.toFixed(2).replace(".", ",")}</strong>;
+}
+
+function finalizarPedido() {
+  if (carrinho.length === 0) {
+    alert("Seu carrinho está vazio.");
+    return;
   }
+
+  let mensagem = "Olá! Gostaria de fazer o pedido:\n\n";
+  let total = 0;
+
+  carrinho.forEach((item, i) => {
+    mensagem += ${i + 1}. 🍔 ${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}\n;
+    if (item.obs.trim() !== "") {
+      mensagem += `   📝 Obs: ${item.obs}\n`;
+    }
+    total += item.preco;
+  });
+
+  mensagem += \n💰 Total: R$ ${total.toFixed(2).replace(".", ",")};
 
   const url = "https://wa.me/" + telefone + "?text=" + encodeURIComponent(mensagem);
   window.open(url, "_blank");
@@ -345,6 +426,7 @@ function pedirWhats(nome, preco, obsId) {
 
 </body>
 </html>
+
 
 
 
