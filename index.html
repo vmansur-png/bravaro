@@ -111,10 +111,14 @@ h2 {
   flex: 1;
 }
 
-.lanche h3 {
-  margin-top: 0;
-  margin-bottom: 6px;
-  font-size: 20px;
+.lanche h3::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background-color: #c9a24d; /* dourado */
+  margin-top: 6px;
+  border-radius: 2px;
 }
 
 .preco {
@@ -343,6 +347,7 @@ function pedirWhats(nome, preco, obsId) {
 
 </body>
 </html>
+
 
 
 
