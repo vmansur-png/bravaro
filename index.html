@@ -10,6 +10,21 @@
   box-sizing: border-box;
 }
 
+  function pedirWhats(nome, preco, obsId) {
+    const obs = document.getElementById(obsId).value;
+
+    let mensagem = Olá! Gostaria de pedir:\n\n🍔 ${nome}\n💰 R$ ${preco};
+
+    if (obs.trim() !== "") {
+      mensagem += \n📝 Observações: ${obs};
+    }
+
+    const telefone = "5514997991098"; // 🔴 TROQUE PELO SEU NÚMERO
+    const url = https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)};
+
+    window.open(url, "_blank");
+  }
+    
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -293,4 +308,5 @@ Pedidos via WhatsApp • Delivery
 </body>
 
 </html>
+
 
