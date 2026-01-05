@@ -335,9 +335,36 @@ Pedidos via WhatsApp • Delivery
 © Bravaro Burgers
 </footer>
 
+  <footer>
+Pedidos via WhatsApp • Delivery  
+©️ Bravaro Burgers
+</footer>
+
+<script>
+  const numeroWhats = "5514997991098";
+
+  function pedirWhats(nome, preco, obsId) {
+    const obsEl = document.getElementById(obsId);
+    const obs = obsEl ? obsEl.value : "";
+
+    let mensagem = Olá! Gostaria de pedir:\n\n🍔 ${nome}\n💰 R$ ${preco};
+
+    if (obs.trim() !== "") {
+      mensagem += \n📝 Observações: ${obs};
+    }
+
+    const url = https://wa.me/${numeroWhats}?text=${encodeURIComponent(mensagem)};
+    window.open(url, "_blank");
+  }
+</script>
+
+</body>
+</html>
+
 </body>
 
 </html>
+
 
 
 
