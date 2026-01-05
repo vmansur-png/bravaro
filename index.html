@@ -344,13 +344,13 @@ Pedidos via WhatsApp • Delivery
   <ul id="lista-carrinho"></ul>
   <p id="total-carrinho"><strong>Total: R$ 0,00</strong></p>
 
-  <button
-  type="button"
-  onclick="alert('Botão clicou'); finalizarPedido();"
+  <a
+  href="#"
+  onclick="finalizarPedido(); return false;"
   class="btn-whatsapp"
 >
   Finalizar pedido no WhatsApp
-</button>
+</a>
 </div>
   
 <script>
@@ -405,12 +405,14 @@ function finalizarPedido() {
 
   mensagem += `\n💰 Total: R$ ${total.toFixed(2).replace(".", ",")}`;
 
-  window.open(url, "_blank");
+  const url = "https://wa.me/" + telefone + "?text=" + encodeURIComponent(mensagem);
+window.location.href = url;
 }
 </script>
 
 </body>
 </html>
+
 
 
 
