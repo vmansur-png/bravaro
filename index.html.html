@@ -13,25 +13,20 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #12100e; /* preto queimado */
+  background-color: #12100e;
   color: #f2f2f2;
 }
 
 header {
   text-align: center;
-  padding: 70px 20px;
-  background: linear-gradient(180deg, #000, #0f0f0f);
+  padding: 80px 20px;
+  background: linear-gradient(180deg, #1a1713, #0f0f0f);
 }
 
-header h1 {
-  font-size: 42px;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-}
-
-header p {
-  color: #c9a24d;
-  font-size: 16px;
+.logo {
+  max-width: 360px;
+  width: 90%;
+  margin-bottom: 20px;
 }
 
 section {
@@ -56,8 +51,6 @@ h2 {
   background: linear-gradient(180deg, #1c1915, #15120f);
   border-radius: 14px;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -68,21 +61,13 @@ h2 {
 }
 
 .lanche img {
-  box-shadow: inset 0 -40px 40px rgba(0,0,0,0.3);
   width: 100%;
   height: 220px;
   object-fit: cover;
 }
 
 .lanche-conteudo {
-   padding: 22px;
-  flex: 1;
-}
-
-.lanche h3 {
-  margin-top: 0;
-  margin-bottom: 6px;
-  font-size: 20px;
+  padding: 22px;
 }
 
 .preco {
@@ -92,19 +77,15 @@ h2 {
   margin-bottom: 10px;
 }
 
-.lanche p {
-   font-size: 14px;
-  line-height: 1.6;
-  color: #d6d3cf;
-}
-
 textarea {
+  width: 100%;
   background-color: #1a1713;
   color: #f2f2f2;
   border-radius: 8px;
   padding: 12px;
   border: 1px solid #2a241d;
   resize: none;
+  margin-top: 10px;
 }
 
 button {
@@ -114,10 +95,14 @@ button {
   background: linear-gradient(135deg, #25d366, #1ebe5d);
   color: #000;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
   font-size: 15px;
+}
+
+button:hover {
+  filter: brightness(1.05);
 }
 
 footer {
@@ -126,51 +111,30 @@ footer {
   background-color: #000;
   font-size: 14px;
 }
-
-/* Ajustes extras para celular */
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 34px;
-  }
-  .lanche img {
-    height: 200px;
-  }
-}
-
-.topo {
-  text-align: center;
-  padding: 80px 20px;
-  background: linear-gradient(180deg, #1a1713, #0f0f0f);
-}
-
-.logo {
-  max-width: 360px;   
-  width: 90%;         
-  margin-bottom: 20px;
-}
 </style>
 
 <script>
-  const numeroWhats = "5514997991098";
+const numeroWhats = "5514997991098"; // SEU NÚMERO
 
-  function pedirWhats(nome, preco, obsId) {
-    const obs = document.getElementById(obsId).value;
-    let mensagem = Olá! Quero 1 ${nome} – R$ ${preco};
+function pedirWhats(nome, preco, obsId) {
+  const obs = document.getElementById(obsId).value;
 
-    if (obs.trim() !== "") {
-      mensagem += \nObservações: ${obs};
-    }
+  let mensagem = Olá! Gostaria de pedir:\n\n🍔 ${nome}\n💰 R$ ${preco};
 
-    const url = https://wa.me/${numeroWhats}?text=${encodeURIComponent(mensagem)};
-    window.open(url, "_blank");
+  if (obs.trim() !== "") {
+    mensagem += \n📝 Observações: ${obs};
   }
+
+  const url = https://wa.me/${numeroWhats}?text=${encodeURIComponent(mensagem)};
+  window.open(url, "_blank");
+}
 </script>
 
 </head>
 <body>
 
-<header class="topo">
-  <img src="imagens/logo.png" alt="Bravaro Hamburgueria" class="logo">
+<header>
+  <img src="imagens/logo.png" class="logo">
   <p>Fogo alto. Sabor intenso.</p>
 </header>
 
@@ -180,57 +144,28 @@ footer {
 <div class="cardapio">
 
 <div class="lanche">
-<img src="imagens/tradicional.jpg" alt="Tradicional do Chef">
+<img src="imagens/tradicional.jpg">
 <div class="lanche-conteudo">
 <h3>Tradicional do Chef</h3>
 <div class="preco">R$ 34,90</div>
-<p>Hambúrguer artesanal, mussarela, cheddar, bacon, calabresa, alface americana, tomate, cebola e maionese da casa.</p>
+<p>Hambúrguer artesanal com bacon, calabresa, queijos e maionese da casa.</p>
 <textarea id="obs1" placeholder="Observações (ex: sem cebola)"></textarea>
-<button onclick="pedirWhats('Tradicional do Chef','34,90','obs1')">Pedir no WhatsApp</button>
+<button onclick="pedirWhats('Tradicional do Chef','34,90','obs1')">
+Pedir no WhatsApp
+</button>
 </div>
 </div>
 
 <div class="lanche">
-<img src="imagens/gorgonzola.jpg" alt="Bravaro Gorgonzola">
+<img src="imagens/gorgonzola.jpg">
 <div class="lanche-conteudo">
 <h3>Bravaro Gorgonzola</h3>
 <div class="preco">R$ 39,90</div>
-<p>Hambúrguer artesanal, gorgonzola, bacon, rúcula, tomate e toque de mel.</p>
-<textarea id="obs2" placeholder="Observações"></textarea>
-<button onclick="pedirWhats('Bravaro Gorgonzola','39,90','obs2')">Pedir no WhatsApp</button>
-</div>
-</div>
-
-<div class="lanche">
-<img src="imagens/metadinha.jpg" alt="Metadinha">
-<div class="lanche-conteudo">
-<h3>Metadinha</h3>
-<div class="preco">R$ 32,90</div>
-<p>Hambúrguer artesanal, cheddar, bacon picadinho e maionese da casa.</p>
-<textarea id="obs3" placeholder="Observações"></textarea>
-<button onclick="pedirWhats('Metadinha','32,90','obs3')">Pedir no WhatsApp</button>
-</div>
-</div>
-
-<div class="lanche">
-<img src="imagens/classico.jpg" alt="Bravaro Clássico">
-<div class="lanche-conteudo">
-<h3>Bravaro Clássico</h3>
-<div class="preco">R$ 33,90</div>
-<p>Hambúrguer artesanal, mussarela, bacon, alface americana, tomate, cebola e maionese da casa.</p>
-<textarea id="obs4" placeholder="Observações"></textarea>
-<button onclick="pedirWhats('Bravaro Clássico','33,90','obs4')">Pedir no WhatsApp</button>
-</div>
-</div>
-
-<div class="lanche">
-<img src="imagens/barbecue.jpg" alt="Bravaro Barbecue">
-<div class="lanche-conteudo">
-<h3>Bravaro Barbecue</h3>
-<div class="preco">R$ 36,90</div>
-<p>Hambúrguer artesanal, cheddar derretido, bacon crocante, cebola crispy e molho barbecue.</p>
-<textarea id="obs5" placeholder="Observações"></textarea>
-<button onclick="pedirWhats('Bravaro Barbecue','36,90','obs5')">Pedir no WhatsApp</button>
+<p>Gorgonzola, rúcula, bacon e toque de mel.</p>
+<textarea id="obs2"></textarea>
+<button onclick="pedirWhats('Bravaro Gorgonzola','39,90','obs2')">
+Pedir no WhatsApp
+</button>
 </div>
 </div>
 
