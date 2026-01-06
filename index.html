@@ -373,18 +373,41 @@ function atualizarCarrinho() {
   const lista = document.getElementById("lista-carrinho");
   const totalEl = document.getElementById("total-carrinho");
 
-  if (!lista || !totalEl) return
-  
   lista.innerHTML = "";
   let total = 0;
 
-  carrinho.forEach((item) => {
+  carrinho.forEach((item, index) => {
     total += item.preco;
-    lista.innerHTML += `<li>${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}</li>`;
+
+    lista.innerHTML += `
+      <li style="display:flex; justify-content:space-between; align-items:center;">
+        <span>
+          🍔 ${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}
+        </span>
+        <button
+          onclick="removerItem(${index})"
+          style="
+            background:#c0392b;
+            color:#fff;
+            border:none;
+            border-radius:6px;
+            padding:4px 8px;
+            cursor:pointer;
+          "
+        >
+          ❌
+        </button>
+      </li>
+    `;
   });
 
-  totalEl.innerHTML = `<strong>Total: R$ ${total.toFixed(2).replace(".", ",")}</strong>`;
+  totalEl.innerHTML = <strong>Total: R$ ${total.toFixed(2).replace(".", ",")}</strong>;
+
+  function removerItem(index) {
+  carrinho.splice(index, 1);
+  atualizarCarrinho();
 }
+
 
 function finalizarPedido() {
   if (carrinho.length === 0) {
@@ -412,6 +435,7 @@ window.location.href = url;
 
 </body>
 </html>
+
 
 
 
