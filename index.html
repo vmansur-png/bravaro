@@ -354,17 +354,48 @@ Pedidos via WhatsApp • Delivery
 </div>
   
 <script>
-function adicionarCarrinho() {
-  alert("Adicionar ao carrinho clicado");
-}
+function atualizarCarrinho() {
+  const lista = document.getElementById("lista-carrinho");
+  const totalEl = document.getElementById("total-carrinho");
 
-function finalizarPedido() {
-  alert("Finalizar pedido clicado");
+  lista.innerHTML = "";
+  let total = 0;
+
+  carrinho.forEach((item, index) => {
+    total += item.preco;
+
+    const li = document.createElement("li");
+    li.style.display = "flex";
+    li.style.justifyContent = "space-between";
+    li.style.alignItems = "center";
+    li.style.gap = "8px";
+
+    const texto = document.createElement("span");
+    texto.innerText = 🍔 ${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")};
+
+    const remover = document.createElement("span");
+    remover.innerText = "❌";
+    remover.style.cursor = "pointer";
+    remover.style.color = "#c0392b";
+    remover.style.fontSize = "16px";
+    remover.onclick = () => removerItem(index);
+
+    li.appendChild(texto);
+    li.appendChild(remover);
+    lista.appendChild(li);
+  });
+
+  totalEl.innerHTML = <strong>Total: R$ ${total.toFixed(2).replace(".", ",")}</strong>;
+}
+  function removerItem(index) {
+  carrinho.splice(index, 1);
+  atualizarCarrinho();
 }
 </script>
 
 </body>
 </html>
+
 
 
 
