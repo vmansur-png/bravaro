@@ -354,97 +354,18 @@ Pedidos via WhatsApp • Delivery
 </div>
   
 <script>
-const telefone = "5514997991098";
-let carrinho = [];
-
-function adicionarCarrinho(nome, preco, obsId) {
-  const obsInput = document.getElementById(obsId);
-  const obs = obsInput ? obsInput.value : "";
-
-  carrinho.push({
-    nome,
-    preco: parseFloat(preco.replace(",", ".")),
-    obs
-  });
-
-  atualizarCarrinho();
-}
-
-function atualizarCarrinho() {
-  const lista = document.getElementById("lista-carrinho");
-  const totalEl = document.getElementById("total-carrinho");
-
-  if (!lista || !totalEl) return;
-
-  lista.innerHTML = "";
-  let total = 0;
-
-  carrinho.forEach((item, index) => {
-    total += item.preco;
-
-    lista.innerHTML += `
-      <li style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
-        <span>
-          🍔 ${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}
-        </span>
-        <button
-          type="button"
-          onclick="removerItem(${index})"
-          style="
-            all: unset;
-            cursor: pointer;
-            background: #c0392b;
-            color: #fff;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-          "
-        >×</button>
-      </li>
-    `;
-  });
-
-  totalEl.innerHTML = <strong>Total: R$ ${total.toFixed(2).replace(".", ",")}</strong>;
-}
-
-function removerItem(index) {
-  carrinho.splice(index, 1);
-  atualizarCarrinho();
+function adicionarCarrinho() {
+  alert("Adicionar ao carrinho clicado");
 }
 
 function finalizarPedido() {
-  if (carrinho.length === 0) {
-    alert("Seu carrinho está vazio.");
-    return;
-  }
-
-  let mensagem = "Olá! Gostaria de fazer o pedido:\n\n";
-  let total = 0;
-
-  carrinho.forEach((item, i) => {
-    mensagem += ${i + 1}. 🍔 ${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}\n;
-    if (item.obs.trim() !== "") {
-      mensagem += `   📝 Obs: ${item.obs}\n`;
-    }
-    total += item.preco;
-  });
-
-  mensagem += \n💰 Total: R$ ${total.toFixed(2).replace(".", ",")};
-
-  const url = "https://wa.me/" + telefone + "?text=" + encodeURIComponent(mensagem);
-  window.location.href = url;
+  alert("Finalizar pedido clicado");
 }
-</script>
-<script>
-alert("JS carregou");
 </script>
 
 </body>
 </html>
+
 
 
 
