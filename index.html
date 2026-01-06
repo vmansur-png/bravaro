@@ -358,7 +358,8 @@ const telefone = "5514997991098";
 let carrinho = [];
 
 function adicionarCarrinho(nome, preco, obsId) {
-  const obs = document.getElementById(obsId).value || "";
+  const obsInput = document.getElementById(obsId);
+  const obs = obsInput ? obsInput.value : "";
 
   carrinho.push({
     nome,
@@ -373,6 +374,8 @@ function atualizarCarrinho() {
   const lista = document.getElementById("lista-carrinho");
   const totalEl = document.getElementById("total-carrinho");
 
+  if (!lista || !totalEl) return;
+
   lista.innerHTML = "";
   let total = 0;
 
@@ -380,16 +383,10 @@ function atualizarCarrinho() {
     total += item.preco;
 
     lista.innerHTML += `
-      <li style="
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        gap:8px;
-      ">
+      <li style="display:flex; justify-content:space-between; align-items:center; gap:8px;">
         <span style="font-size:14px;">
           🍔 ${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}
         </span>
-
         <button
           type="button"
           onclick="removerItem(${index})"
@@ -407,9 +404,7 @@ function atualizarCarrinho() {
             justify-content: center;
             font-weight: bold;
           "
-        >
-          ×
-        </button>
+        >×</button>
       </li>
     `;
   });
@@ -417,11 +412,10 @@ function atualizarCarrinho() {
   totalEl.innerHTML = <strong>Total: R$ ${total.toFixed(2).replace(".", ",")}</strong>;
 }
 
-  function removerItem(index) {
+function removerItem(index) {
   carrinho.splice(index, 1);
   atualizarCarrinho();
 }
-
 
 function finalizarPedido() {
   if (carrinho.length === 0) {
@@ -433,22 +427,23 @@ function finalizarPedido() {
   let total = 0;
 
   carrinho.forEach((item, i) => {
-    mensagem += `${i + 1}. 🍔 ${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}\n`;
+    mensagem += ${i + 1}. 🍔 ${item.nome} – R$ ${item.preco.toFixed(2).replace(".", ",")}\n;
     if (item.obs.trim() !== "") {
       mensagem += `   📝 Obs: ${item.obs}\n`;
     }
     total += item.preco;
   });
 
-  mensagem += `\n💰 Total: R$ ${total.toFixed(2).replace(".", ",")}`;
+  mensagem += \n💰 Total: R$ ${total.toFixed(2).replace(".", ",")};
 
   const url = "https://wa.me/" + telefone + "?text=" + encodeURIComponent(mensagem);
-window.location.href = url;
+  window.location.href = url;
 }
 </script>
 
 </body>
 </html>
+
 
 
 
