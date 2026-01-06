@@ -362,9 +362,9 @@ function adicionarCarrinho(nome, preco, obsId) {
   const obs = obsInput ? obsInput.value : "";
 
   carrinho.push({
-    nome,
+    nome: nome,
     preco: parseFloat(preco.replace(",", ".")),
-    obs
+    obs: obs
   });
 
   atualizarCarrinho();
@@ -381,16 +381,19 @@ function atualizarCarrinho() {
     total += item.preco;
 
     const li = document.createElement("li");
-    li.textContent = `🍔 ${item.nome} – R$ ${item.preco
-      .toFixed(2)
-      .replace(".", ",")}`;
+    li.textContent =
+      "🍔 " +
+      item.nome +
+      " – R$ " +
+      item.preco.toFixed(2).replace(".", ",");
 
     lista.appendChild(li);
   });
 
-  totalEl.innerHTML = `<strong>Total: R$ ${total
-    .toFixed(2)
-    .replace(".", ",")}</strong>`;
+  totalEl.innerHTML =
+    "<strong>Total: R$ " +
+    total.toFixed(2).replace(".", ",") +
+    "</strong>";
 }
 
 function finalizarPedido() {
@@ -403,21 +406,30 @@ function finalizarPedido() {
   let total = 0;
 
   carrinho.forEach((item, i) => {
-    mensagem += `${i + 1}. 🍔 ${item.nome} – R$ ${item.preco
-      .toFixed(2)
-      .replace(".", ",")}\n`;
+    mensagem +=
+      (i + 1) +
+      ". 🍔 " +
+      item.nome +
+      " – R$ " +
+      item.preco.toFixed(2).replace(".", ",") +
+      "\n";
 
     if (item.obs.trim() !== "") {
-      mensagem += `   📝 Obs: ${item.obs}\n`;
+      mensagem += "   📝 Obs: " + item.obs + "\n";
     }
 
     total += item.preco;
   });
 
-  mensagem += \n💰 Total: R$ ${total.toFixed(2).replace(".", ",")};
+  mensagem +=
+    "\n💰 Total: R$ " +
+    total.toFixed(2).replace(".", ",");
 
   const url =
-    "https://wa.me/" + telefone + "?text=" + encodeURIComponent(mensagem);
+    "https://wa.me/" +
+    telefone +
+    "?text=" +
+    encodeURIComponent(mensagem);
 
   window.location.href = url;
 }
@@ -425,6 +437,7 @@ function finalizarPedido() {
 
 </body>
 </html>
+
 
 
 
