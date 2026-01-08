@@ -438,18 +438,11 @@ function finalizarPedido() {
 
   window.location.href = url;
 }
-document.getElementById("lista-carrinho").addEventListener("click", function (e) {
-  if (e.target.tagName === "BUTTON") {
-    const index = e.target.dataset.index;
-    carrinho.splice(index, 1);
-    atualizarCarrinho();
-  }
-});
-
 </script>
 
 </body>
 </html>
+
 
 
 
