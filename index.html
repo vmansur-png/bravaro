@@ -251,6 +251,12 @@ footer {
 .bebida {
   justify-content: space-between;
 }
+  /* Grid específico para bebidas */
+.cardapio-bebidas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+}
   
 </style>
 </head>
@@ -384,7 +390,7 @@ footer {
 
   <h2>🥤 Bebidas</h2>
 
-<div class="cardapio">
+<div class="cardapio-bebidas">
   
   <div class="bebida">
     <img src="imagens/coca.jpg" alt="Coca-Cola Lata">
@@ -533,6 +539,7 @@ function finalizarPedido() {
 
 </body>
 </html>
+
 
 
 
