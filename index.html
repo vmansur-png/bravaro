@@ -377,16 +377,37 @@ function atualizarCarrinho() {
   lista.innerHTML = "";
   let total = 0;
 
-  carrinho.forEach((item) => {
+  carrinho.forEach((item, index) => {
     total += item.preco;
 
     const li = document.createElement("li");
-    li.textContent =
+    li.style.display = "flex";
+    li.style.justifyContent = "space-between";
+    li.style.alignItems = "center";
+    li.style.marginBottom = "6px";
+
+    const texto = document.createElement("span");
+    texto.innerText =
       "🍔 " +
       item.nome +
       " – R$ " +
       item.preco.toFixed(2).replace(".", ",");
 
+    const botaoRemover = document.createElement("button");
+    botaoRemover.innerText = "❌";
+    botaoRemover.type = "button";
+    botaoRemover.style.background = "transparent";
+    botaoRemover.style.border = "none";
+    botaoRemover.style.cursor = "pointer";
+    botaoRemover.style.fontSize = "16px";
+    botaoRemover.style.color = "#c0392b";
+
+    botaoRemover.onclick = function () {
+      removerItem(index);
+    };
+
+    li.appendChild(texto);
+    li.appendChild(botaoRemover);
     lista.appendChild(li);
   });
 
@@ -433,10 +454,18 @@ function finalizarPedido() {
 
   window.location.href = url;
 }
+</script
+
+<script>
+function removerItem(index) {
+  carrinho.splice(index, 1);
+  atualizarCarrinho();
+}
 </script>
 
 </body>
 </html>
+
 
 
 
