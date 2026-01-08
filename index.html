@@ -380,18 +380,19 @@ function atualizarCarrinho() {
       " – R$ " +
       item.preco.toFixed(2).replace(".", ",");
 
-    const botaoRemover = document.createElement("button");
-    botaoRemover.innerText = "❌";
-    botaoRemover.type = "button";
-    botaoRemover.dataset.index = index;
-    botaoRemover.style.background = "transparent";
-    botaoRemover.style.border = "none";
-    botaoRemover.style.cursor = "pointer";
-    botaoRemover.style.fontSize = "16px";
-    botaoRemover.style.color = "#c0392b";
+    const remover = document.createElement("span");
+    remover.innerText = "❌";
+    remover.style.cursor = "pointer";
+    remover.style.color = "#c0392b";
+    remover.style.fontSize = "16px";
+
+    remover.onclick = function () {
+      carrinho.splice(index, 1);
+      atualizarCarrinho();
+    };
 
     li.appendChild(texto);
-    li.appendChild(botaoRemover);
+    li.appendChild(remover);
     lista.appendChild(li);
   });
 
@@ -400,7 +401,6 @@ function atualizarCarrinho() {
     total.toFixed(2).replace(".", ",") +
     "</strong>";
 }
-
 function finalizarPedido() {
   if (carrinho.length === 0) {
     alert("Seu carrinho está vazio.");
@@ -450,6 +450,7 @@ document.getElementById("lista-carrinho").addEventListener("click", function (e)
 
 </body>
 </html>
+
 
 
 
