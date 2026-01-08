@@ -402,9 +402,9 @@ function atualizarCarrinho() {
     botaoRemover.style.fontSize = "16px";
     botaoRemover.style.color = "#c0392b";
 
-    botaoRemover.onclick = function () {
-      removerItem(index);
-    };
+  botaoRemover.addEventListener("click", function () {
+  removerItem(index);
+});
 
     li.appendChild(texto);
     li.appendChild(botaoRemover);
@@ -465,6 +465,7 @@ function removerItem(index) {
 
 </body>
 </html>
+
 
 
 
