@@ -397,10 +397,11 @@ function adicionarCarrinho(nome, preco, obsId) {
   const obs = obsInput ? obsInput.value : "";
 
   carrinho.push({
-    nome: nome,
-    preco: parseFloat(preco.replace(",", ".")),
-    obs: obs
-  });
+  nome: nome,
+  preco: parseFloat(preco.replace(",", ".")),
+  obs: obs,
+  tipo: nome.toLowerCase().includes("coca") ? "bebida" : "lanche"
+});
 
   atualizarCarrinho();
 }
@@ -416,13 +417,13 @@ function atualizarCarrinho() {
     total += item.preco;
 
     const li = document.createElement("li");
-    li.textContent =
-      "🍔 " +
-      item.nome +
-      " – R$ " +
-      item.preco.toFixed(2).replace(".", ",");
+li.textContent =
+  (item.tipo === "bebida" ? "🥤 " : "🍔 ") +
+  item.nome +
+  " – R$ " +
+  item.preco.toFixed(2).replace(".", ",");
 
-    lista.appendChild(li);
+lista.appendChild(li);
   });
 
   totalEl.innerHTML =
@@ -482,6 +483,7 @@ function finalizarPedido() {
 
 </body>
 </html>
+
 
 
 
