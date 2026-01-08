@@ -357,6 +357,19 @@ Pedidos via WhatsApp • Delivery
 const telefone = "5514997991098";
 let carrinho = [];
 
+function adicionarCarrinho(nome, preco, obsId) {
+  const obsInput = document.getElementById(obsId);
+  const obs = obsInput ? obsInput.value : "";
+
+  carrinho.push({
+    nome: nome,
+    preco: parseFloat(preco.replace(",", ".")),
+    obs: obs
+  });
+
+  atualizarCarrinho();
+}
+
 function atualizarCarrinho() {
   const lista = document.getElementById("lista-carrinho");
   const totalEl = document.getElementById("total-carrinho");
@@ -364,35 +377,16 @@ function atualizarCarrinho() {
   lista.innerHTML = "";
   let total = 0;
 
-  carrinho.forEach((item, index) => {
+  carrinho.forEach((item) => {
     total += item.preco;
 
     const li = document.createElement("li");
-    li.style.display = "flex";
-    li.style.justifyContent = "space-between";
-    li.style.alignItems = "center";
-    li.style.marginBottom = "6px";
-
-    const texto = document.createElement("span");
-    texto.innerText =
+    li.textContent =
       "🍔 " +
       item.nome +
       " – R$ " +
       item.preco.toFixed(2).replace(".", ",");
 
-    const remover = document.createElement("span");
-    remover.innerText = "❌";
-    remover.style.cursor = "pointer";
-    remover.style.color = "#c0392b";
-    remover.style.fontSize = "16px";
-
-    remover.onclick = function () {
-      carrinho.splice(index, 1);
-      atualizarCarrinho();
-    };
-
-    li.appendChild(texto);
-    li.appendChild(remover);
     lista.appendChild(li);
   });
 
@@ -401,6 +395,7 @@ function atualizarCarrinho() {
     total.toFixed(2).replace(".", ",") +
     "</strong>";
 }
+
 function finalizarPedido() {
   if (carrinho.length === 0) {
     alert("Seu carrinho está vazio.");
@@ -442,17 +437,6 @@ function finalizarPedido() {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
