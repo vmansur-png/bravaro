@@ -342,7 +342,14 @@ Pedidos via WhatsApp • Delivery
   <h3>🛒 Seu pedido</h3>
   <ul id="lista-carrinho"></ul>
   <p id="total-carrinho"><strong>Total: R$ 0,00</strong></p>
-
+<button
+  type="button"
+  onclick="removerUltimoItem()"
+  class="btn-whatsapp"
+  style="background:#e67e22; color:#000;"
+>
+  Remover último item
+</button>
   <a
   href="#"
   onclick="finalizarPedido(); return false;"
@@ -395,6 +402,16 @@ function atualizarCarrinho() {
     "</strong>";
 }
 
+  function removerUltimoItem() {
+  if (carrinho.length === 0) {
+    alert("O carrinho já está vazio.");
+    return;
+  }
+
+  carrinho.pop();
+  atualizarCarrinho();
+}
+
 function finalizarPedido() {
   if (carrinho.length === 0) {
     alert("Seu carrinho está vazio.");
@@ -436,6 +453,7 @@ function finalizarPedido() {
 
 </body>
 </html>
+
 
 
 
