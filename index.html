@@ -251,13 +251,24 @@ footer {
 .bebida {
   justify-content: space-between;
 }
-  /* Grid específico para bebidas */
+/* Grid fixo para bebidas – 6 colunas no desktop */
 .cardapio-bebidas {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(6, 1fr);
   gap: 20px;
 }
-  
+  /* Responsivo – bebidas no celular */
+@media (max-width: 900px) {
+  .cardapio-bebidas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .cardapio-bebidas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 </style>
 </head>
 <body>
@@ -649,6 +660,7 @@ function finalizarPedido() {
 
 </body>
 </html>
+
 
 
 
