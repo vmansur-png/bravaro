@@ -585,15 +585,19 @@ function finalizarPedido() {
   let total = 0;
 
   carrinho.forEach((item, i) => {
+    const emoji = item.tipo === "bebida" ? "🥤" : "🍔";
+
     mensagem +=
       (i + 1) +
-      ". 🍔 " +
+      ". " +
+      emoji +
+      " " +
       item.nome +
       " – R$ " +
       item.preco.toFixed(2).replace(".", ",") +
       "\n";
 
-    if (item.obs.trim() !== "") {
+    if (item.obs && item.obs.trim() !== "") {
       mensagem += "   📝 Obs: " + item.obs + "\n";
     }
 
@@ -616,6 +620,7 @@ function finalizarPedido() {
 
 </body>
 </html>
+
 
 
 
