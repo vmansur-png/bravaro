@@ -446,7 +446,7 @@ footer {
       <div class="preco">R$ 6,00</div>
       <p>Refrigerante Fanta Laranja lata 350ml.</p>
       <textarea id="obs8" placeholder="Observações"></textarea>
-      <button type="button" onclick="adicionarCarrinho('Fanta Laranja Lata','6,00','obs8')" class="btn-whatsapp">
+      <button type="button" onclick="adicionarCarrinho('Fanta Laranja Lata', '6,00', 'obs8', 'bebida')" class="btn-whatsapp">
         Adicionar ao carrinho
       </button>
     </div>
@@ -459,7 +459,7 @@ footer {
       <div class="preco">R$ 6,00</div>
       <p>Refrigerante Sprite lata 350ml.</p>
       <textarea id="obs9" placeholder="Observações"></textarea>
-      <button type="button" onclick="adicionarCarrinho('Sprite Lata','6,00','obs9')" class="btn-whatsapp">
+      <button type="button" onclick="adicionarCarrinho('Sprite Lata', '6,00', 'obs9', 'bebida')" class="btn-whatsapp">
         Adicionar ao carrinho
       </button>
     </div>
@@ -525,16 +525,16 @@ Pedidos via WhatsApp • Delivery
 const telefone = "5514997991098";
 let carrinho = [];
 
-function adicionarCarrinho(nome, preco, obsId) {
+function adicionarCarrinho(nome, preco, obsId, tipo = "lanche") {
   const obsInput = document.getElementById(obsId);
   const obs = obsInput ? obsInput.value : "";
 
   carrinho.push({
-  nome: nome,
-  preco: parseFloat(preco.replace(",", ".")),
-  obs: obs,
-  tipo: nome.toLowerCase().includes("coca") ? "bebida" : "lanche"
-});
+    nome: nome,
+    preco: parseFloat(preco.replace(",", ".")),
+    obs: obs,
+    tipo: tipo
+  });
 
   atualizarCarrinho();
 }
@@ -616,6 +616,7 @@ function finalizarPedido() {
 
 </body>
 </html>
+
 
 
 
