@@ -279,6 +279,25 @@ footer {
     bottom: 10px;
   }
 }
+ .bebida {
+  height: 100%;
+  min-height: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bebida .lanche-conteudo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bebida img {
+  height: 150px;
+  object-fit: contain;
+  background: #fff;
+}
 </style>
 </head>
 <body>
@@ -444,7 +463,7 @@ footer {
       <h3>Coca-Cola Lata</h3>
       <div class="preco">R$ 6,00</div>
       <p>Refrigerante Coca-Cola lata 350ml, bem gelada.</p>
-      <textarea id="obs6" placeholder="Observações"></textarea>
+      
       <button type="button" onclick="adicionarCarrinho('Coca-Cola Lata','6,00','obs6')" class="btn-whatsapp">
         Adicionar ao carrinho
       </button>
@@ -457,7 +476,7 @@ footer {
       <h3>Coca-Cola Zero Lata</h3>
       <div class="preco">R$ 6,00</div>
       <p>Refrigerante Coca-Cola Zero açúcar, lata 350ml.</p>
-      <textarea id="obs7" placeholder="Observações"></textarea>
+      
       <button type="button" onclick="adicionarCarrinho('Coca-Cola Zero Lata','6,00','obs7')" class="btn-whatsapp">
         Adicionar ao carrinho
       </button>
@@ -470,7 +489,7 @@ footer {
       <h3>Fanta Laranja Lata</h3>
       <div class="preco">R$ 6,00</div>
       <p>Refrigerante Fanta Laranja lata 350ml.</p>
-      <textarea id="obs8" placeholder="Observações"></textarea>
+      
       <button type="button" onclick="adicionarCarrinho('Fanta Laranja Lata', '6,00', 'obs8')" class="btn-whatsapp">
         Adicionar ao carrinho
       </button>
@@ -483,7 +502,7 @@ footer {
       <h3>Sprite Lata</h3>
       <div class="preco">R$ 6,00</div>
       <p>Refrigerante Sprite lata 350ml.</p>
-      <textarea id="obs9" placeholder="Observações"></textarea>
+     
       <button type="button" onclick="adicionarCarrinho('Sprite Lata', '6,00', 'obs9')" class="btn-whatsapp">
         Adicionar ao carrinho
       </button>
@@ -496,7 +515,7 @@ footer {
       <h3>Coca-Cola 2L</h3>
       <div class="preco">R$ 15,50</div>
       <p>Refrigerante Coca-Cola garrafa 2 litros.</p>
-      <textarea id="obs10" placeholder="Observações"></textarea>
+     
       <button type="button" onclick="adicionarCarrinho('Coca-Cola 2L','15,50','obs10')" class="btn-whatsapp">
         Adicionar ao carrinho
       </button>
@@ -509,7 +528,7 @@ footer {
       <h3>Coca-Cola Zero 2L</h3>
       <div class="preco">R$ 15,50</div>
       <p>Refrigerante Coca-Cola Zero açúcar 2 litros.</p>
-      <textarea id="obs11" placeholder="Observações"></textarea>
+      
       <button type="button" onclick="adicionarCarrinho('Coca-Cola Zero 2L','15,50','obs11')" class="btn-whatsapp">
         Adicionar ao carrinho
       </button>
@@ -526,8 +545,6 @@ footer {
     <p>
       Água mineral Crystal, garrafa 500ml.
     </p>
-
-    <textarea id="obs12" placeholder="Observações (ex: bem gelada)"></textarea>
 
     <button
       type="button"
@@ -549,9 +566,7 @@ footer {
     <p>
       Água mineral Crystal com gás, garrafa 500ml.
     </p>
-
-    <textarea id="obs13" placeholder="Observações (ex: bem gelada)"></textarea>
-
+   
     <button
       type="button"
       onclick="adicionarCarrinho('Água Crystal Com Gás', '5,00', 'obs13')"
@@ -705,6 +720,7 @@ function finalizarPedido() {
 
 </body>
 </html>
+
 
 
 
