@@ -729,9 +729,9 @@ function finalizarPedido() {
     "\n💰 Total: R$ " +
     total.toFixed(2).replace(".", ",");
 
- mensagem +=
-  "\n\n🚚 A taxa de entrega varia conforme o bairro." +
-  "\nPode me informar o endereço para confirmar, por favor?";
+mensagem +=
+  "\n\n🚚 Taxa de entrega não inclusa." +
+  "\nValor informado conforme o endereço de entrega.";
 
   const url =
     "https://wa.me/" +
