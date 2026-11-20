@@ -18,7 +18,7 @@
 <script>
 const TELEFONE='5514998922331';
 const produtos=[
-{"id":0,"category":"combos","name":"Combo 2 Bravaro Clássicos","price":59.9,"image":"imagens/combo-2-classicos-800.jpg.jpeg","description":"Dois Bravaro Clássicos com hambúrguer artesanal de 180 g, mussarela, bacon, alface americana, tomate, cebola e maionese da casa."},
+{"id":0,"category":"combos","name":"Combo 2 Bravaro Clássicos","price":49.9,"oldPrice":59.9,"image":"imagens/combo-2-classicos-800.jpg.jpeg","description":"Dois Bravaro Clássicos com hambúrguer artesanal de 180 g, mussarela, bacon, alface americana, tomate, cebola e maionese da casa."},
 {"id":1,"category":"combos","name":"Combo Dupla Perfeita","price":66.9,"image":"imagens/combo-dupla-perfeita-800.jpg.jpeg","description":"1 Tradicional do Chef + 1 Bravaro Barbecue. Duas receitas diferentes em um só combo."},
 {"id":2,"category":"lanches","name":"Bravaro Coalho","price":35.9,"image":"imagens/bravaro-coalho-800.jpg.jpeg","description":"Pão brioche, maionese da casa, hambúrguer artesanal de 180 g, queijo coalho, mel, bacon, rúcula, tomate e cebola."},
 {"id":3,"category":"lanches","name":"Bravaro Clássico","price":33.9,"image":"imagens/bravaro-classico-800.jpg.jpeg","description":"Pão brioche, hambúrguer artesanal de 180 g, mussarela, bacon, alface americana, tomate, cebola e maionese da casa."},
@@ -50,7 +50,7 @@ produtos.forEach(p=>{
  const img=document.createElement('img');img.src=p.image;img.alt=p.name;img.loading='lazy';
  const body=document.createElement('span');body.className='product-body';
  const nome=document.createElement('span');nome.className='product-name';nome.textContent=p.name;
- const preco=document.createElement('span');preco.className='product-price';preco.textContent=moeda(p.price);
+ const preco=document.createElement('span');preco.className='product-price';preco.innerHTML=p.oldPrice?<del style="color:#aaa;margin-right:8px">${moeda(p.oldPrice)}</del> <strong style="color:#ffd700">${moeda(p.price)}</strong>:moeda(p.price);
  const hint=document.createElement('span');hint.className='product-hint';hint.textContent='Toque para ver detalhes ›';
  body.append(nome,preco,hint);card.append(img,body);card.addEventListener('click',()=>mostrarProduto(p.id));document.querySelector(`[data-category="${p.category}"]`).append(card)
 });
