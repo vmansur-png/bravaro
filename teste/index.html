@@ -50,7 +50,7 @@ produtos.forEach(p=>{
  const img=document.createElement('img');img.src=p.image;img.alt=p.name;img.loading='lazy';
  const body=document.createElement('span');body.className='product-body';
  const nome=document.createElement('span');nome.className='product-name';nome.textContent=p.name;if(p.promo){const selo=document.createElement('span');selo.textContent='🔥 '+p.promo;selo.style.cssText='display:block;width:max-content;background:#b91c1c;color:white;font-size:12px;font-weight:bold;padding:5px 10px;border-radius:6px;margin-bottom:8px';nome.prepend(selo);}
- const preco=document.createElement('span');preco.className='product-price';preco.textContent=moeda(p.price);
+ const preco=document.createElement('span');preco.className='product-price';preco.innerHTML=p.oldPrice?<del style="color:#aaa;margin-right:8px">${moeda(p.oldPrice)}</del><strong style="color:#ffd700">${moeda(p.price)}</strong>:moeda(p.price);
  const hint=document.createElement('span');hint.className='product-hint';hint.textContent='Toque para ver detalhes ›';
  body.append(nome,preco,hint);card.append(img,body);card.addEventListener('click',()=>mostrarProduto(p.id));document.querySelector(`[data-category="${p.category}"]`).append(card)
 });
